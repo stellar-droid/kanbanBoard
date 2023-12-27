@@ -1,3 +1,8 @@
+// DROPPABlE COMPONENT
+
+
+
+
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
@@ -8,10 +13,10 @@ const Container = styled.div`
   box-shadow: 5px 5px 5px 2px grey;
   padding: 8px;
   color: #000;
-  margin-bottom: 8px;
-  min-height: 90px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-bottom: 1px;
+  min-height: 1px;
+  margin-left: 1px;
+  margin-right: 1px;
   background-color: ${(props) => bgcolorChange(props)};
   cursor: pointer;
   display: flex;
@@ -62,14 +67,14 @@ export default function Task({ task, index }) {
           >
             <TextContent>{task.title}</TextContent>
           </div>
-          <Icons>
+          {/* <Icons>
             <div>
               <Avatar
                 onClick={() => console.log(task)}
                 src={"https://joesch.moe/api/v1/random?key=" + task.id}
               />
             </div>
-          </Icons>
+          </Icons> */}
           {provided.placeholder}
         </Container>
       )}
