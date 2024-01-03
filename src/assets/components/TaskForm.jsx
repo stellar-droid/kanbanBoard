@@ -39,7 +39,7 @@ const FormContainer = styled.div`
  
 `;
 
-const TaskForm = ({ onClose }) => {
+const TaskForm = ({ onClose, onSubmit, onFormSubmit }) => {
 
   const statusOptions = ['Active', 'Inactive', 'Pending'];
   
@@ -104,11 +104,11 @@ const TaskForm = ({ onClose }) => {
         margin="normal"
       />
 
-      <Button variant="contained" color="primary" fullWidth>
+      <Button variant="contained" color="primary" fullWidth >
         Submit and Continue
       </Button>
     </form>
-        <button onClick={onClose}>Close</button>
+        <button onClick={onClose}>Close</button>  
       </FormContainer>
     </FormOverlay>
   );

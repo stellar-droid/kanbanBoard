@@ -1,13 +1,11 @@
 // DROPPABlE COMPONENT
 
-
-
-
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { Avatar, Image } from "antd";
-
+import { Button, IconButton } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 const Container = styled.div`
   border-radius: 10px;
   box-shadow: 5px 5px 5px 2px grey;
@@ -22,15 +20,11 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  position: relative;
 `;
 
 const TextContent = styled.div``;
 
-const Icons = styled.div`
-  display: flex;
-  justify-content: end;
-  padding: 2px;
-`;
 function bgcolorChange(props) {
   return props.isDragging
     ? "lightgreen"
@@ -43,8 +37,9 @@ function bgcolorChange(props) {
     : "#EAF4FC";
 }
 
-export default function Task({ task, index }) {
+export default function Task({ task, index, onDelete }) {
   return (
+    <>
     <Draggable draggableId={`${task.id}`} key={task.id} index={index}>
       {(provided, snapshot) => (
         <Container
@@ -54,30 +49,30 @@ export default function Task({ task, index }) {
           isDragging={snapshot.isDragging}
           style={provided.draggableProps.style}
         >
-          <div style={{ display: "flex", justifyContent: "start", padding: 2 }}>
+          <div style={{ display: "flex", justifyContent: "space-between",alignItems:'start', padding: 2 }}>
             <span>
               <small>
                 #{task.id}
                 {"  "}
               </small>
             </span>
+            <div style={{position:'absolute',left:'85%'}}>
+            <IconButton onClick={() => onDelete(task.id)} >
+            <CloseIcon></CloseIcon>
+          </IconButton>
+            </div>
           </div>
           <div
             style={{ display: "flex", justifyContent: "center", padding: 2 }}
-          >
+            >
             <TextContent>{task.title}</TextContent>
           </div>
-          {/* <Icons>
-            <div>
-              <Avatar
-                onClick={() => console.log(task)}
-                src={"https://joesch.moe/api/v1/random?key=" + task.id}
-              />
-            </div>
-          </Icons> */}
+          
           {provided.placeholder}
+          
         </Container>
       )}
     </Draggable>
+      </>
   );
 }
