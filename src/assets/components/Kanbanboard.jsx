@@ -5,6 +5,8 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Column from "./Column";
 import TaskForm from "./TaskForm";
 import { Modal, Paper } from "@mui/material";
+import LeftPanel from "./LeftPanel";
+
 export default function KanbanBoard() {
   const [rack1, setRack1] = useState([""]);
   const [rack2, setRack2] = useState([""]);
@@ -13,17 +15,17 @@ export default function KanbanBoard() {
   const [action, setAction] = useState(true);
 
   const staticData = [
-    { userId: 1, id: 1, title: "Device 1", rack: "1" },
-    { userId: 2, id: 2, title: "Device 2", rack: "1" },
-    { userId: 3, id: 3, title: "Device 3", rack: "2" },
-    { userId: 4, id: 4, title: "Device 4", rack: "2" },
-    { userId: 5, id: 5, title: "Device 5", rack: "3" },
-    { userId: 6, id: 6, title: "Device 6", rack: "3" },
-    // { userId: 7, id: 7, title: "Device 7", rack: true },
-    // { userId: 8, id: 8, title: "Device 8", rack: true },
-    // { userId: 9, id: 9, title: "Device 9", rack: true },
-    // { userId: 10, id: 10, title: "Device 10", rack: true },
-    // { userId: 11, id: 11, title: "Device 11", rack: false },
+    // { userId: 1, id: 1, title: "Device 1", rack: "1" },
+    // { userId: 2, id: 2, title: "Device 2", rack: "1" },
+    // { userId: 3, id: 3, title: "Device 3", rack: "2" },
+    // { userId: 4, id: 4, title: "Device 4", rack: "2" },
+    // { userId: 5, id: 5, title: "Device 5", rack: "3" },
+    // { userId: 6, id: 6, title: "Device 6", rack: "3" },
+    // { userId: 7, id: 7, title: "Device 7", rack: "3" },
+    // { userId: 8, id: 8, title: "Device 8", rack: "2" },
+    // { userId: 9, id: 9, title: "Device 9", rack: "1" },
+    // { userId: 10, id: 10, title: "Device 10", rack: "2" },
+    // { userId: 11, id: 11, title: "Device 11", rack: "3" },
     // { userId: 12, id: 12, title: "Device 12", rack: true },
     // { userId: 13, id: 13, title: "Device 13", rack: false },
     // { userId: 14, id: 14, title: "Device 14", rack: true },
@@ -98,14 +100,13 @@ export default function KanbanBoard() {
   // <-------------------HANDLE DRAG START----------------->
   const handleDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-   
-  
+
     console.log("Dragged Device Id:", draggableId);
     console.log("Source Rack Id:", source.droppableId);
     console.log("Destination Rack Id:", destination.droppableId);
     console.log("Destination Rack Index:", destination.index);
     console.log("Source Rack Index:", source.index);
-  
+
     // If there is no destination or the item is dropped in the same place
     if (!destination || destination.droppableId === source.droppableId) {
       // Rearrange tasks within the same rack
@@ -117,7 +118,7 @@ export default function KanbanBoard() {
           : Array.from(rack3);
       const [removedTask] = updatedRack.splice(source.index, 1);
       updatedRack.splice(destination.index, 0, removedTask);
-  
+
       if (source.droppableId === "1") {
         setRack1(updatedRack);
       } else if (source.droppableId === "2") {
@@ -125,11 +126,11 @@ export default function KanbanBoard() {
       } else if (source.droppableId === "3") {
         setRack3(updatedRack);
       }
-  
+
       setIsFormOpen(true);
       return;
     }
-  
+
     // If dragging between racks
     const task =
       source.droppableId === "2"
@@ -137,7 +138,7 @@ export default function KanbanBoard() {
         : source.droppableId === "3"
         ? rack3[source.index]
         : rack1[source.index];
-  
+
     // Remove the task from the source rack
     const updatedSource =
       source.droppableId === "2"
@@ -146,7 +147,7 @@ export default function KanbanBoard() {
         ? Array.from(rack3)
         : Array.from(rack1);
     updatedSource.splice(source.index, 1);
-  
+
     // Update the destination rack with the task at the correct position
     const updatedDestination =
       destination.droppableId === "2"
@@ -160,13 +161,13 @@ export default function KanbanBoard() {
       rack2: destination.droppableId === "2",
       rack3: destination.droppableId === "3",
     });
-  
+
     // Check the length of the destination rack after rearranging
     if (updatedDestination.length > 42) {
       // Rack is full, prevent dropping
       return alert("Rack is full!");
     }
-  
+
     // Update state with the new task positions
     if (source.droppableId === "1") {
       setRack1(updatedSource);
@@ -175,7 +176,7 @@ export default function KanbanBoard() {
     } else if (source.droppableId === "3") {
       setRack3(updatedSource);
     }
-  
+
     if (destination.droppableId === "1") {
       setRack1(updatedDestination);
     } else if (destination.droppableId === "2") {
@@ -183,11 +184,20 @@ export default function KanbanBoard() {
     } else if (destination.droppableId === "3") {
       setRack3(updatedDestination);
     }
-  
-    alert('you dragged the device no. '+draggableId+' from rack no. '+source.droppableId+' to rack no. '+destination.droppableId+'at index '+destination.index);
+
+    alert(
+      "you dragged the device no. " +
+        draggableId +
+        " from rack no. " +
+        source.droppableId +
+        " to rack no. " +
+        destination.droppableId +
+        "at index " +
+        destination.index
+    );
     setIsFormOpen(true);
   };
-  
+
   // <-------------------HANDLE DRAG START ENDS----------------->
 
   // <-------------------OPEN FORM----------------->
@@ -206,51 +216,63 @@ export default function KanbanBoard() {
     setRack2(updatedRack2);
     setRack1(updatedRack1);
     setRack3(updatedRack3);
-        console.log(" Deleted Device : ", taskId);
+    console.log(" Deleted Device : ", taskId);
   };
   // <-------------------DELETE DEVICE ENDS----------------->
-
+  const [stockDevices, setStockDevices] = useState([
+    { id: "device1", name: "Device 1" },
+    { id: "device2", name: "Device 2" },
+    // Add more devices as needed
+  ]);
   return (
-    <DragDropContext onDragEnd={handleDragEnd}>
-      <h2 style={{ textAlign: "center" }}>Rack View </h2>
+    <>
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <h2 style={{ textAlign: "center" }}>Rack View </h2>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexDirection: "row",
-        }}
-      >
-        <Column
-          title={"Rack 1"}
-          tasks={rack1}
-          id={"1"}
-          style={{ zIndex: 1 }}
-          onDelete={onDelete}
-        />
-        <Column
-          title={"Rack 2"}
-          tasks={rack2}
-          id={"2"}
-          style={{ zIndex: 2 }}
-          onDelete={onDelete}
-        />
-        <Column
-          title={"Rack 3"}
-          tasks={rack3}
-          id={"3"}
-          style={{ zIndex: 2 }}
-          onDelete={onDelete}
-        />
-        {/* <Column title={"Rack 3"} tasks={[]} id={"3"} /> */}
-        <Modal open={isFormOpen} onKeyDown={handleEscapeKey}>
-          {/* <Paper style={{height:'570px',width:700}}> */}
-          <TaskForm onClose={closeForm} action={action} setAction={setAction} />
-          {/* </Paper> */}
-        </Modal>{" "}
-        {/* Render the form when isFormOpen is true */}
-      </div>
-    </DragDropContext>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexDirection: "row",
+          }}
+        >
+          <Column
+            title={"Rack 1"}
+            tasks={rack1}
+            id={"1"}
+            style={{ zIndex: 1 }}
+            onDelete={onDelete}
+          />
+          <Column
+            title={"Rack 2"}
+            tasks={rack2}
+            id={"2"}
+            style={{ zIndex: 2 }}
+            onDelete={onDelete}
+          />
+          <Column
+            title={"Rack 3"}
+            tasks={rack3}
+            id={"3"}
+            style={{ zIndex: 2 }}
+            onDelete={onDelete}
+          />
+
+          <LeftPanel stockDevices={stockDevices} index={stockDevices.id} id={stockDevices.id} />
+          {/* <Column title={"Rack 3"} tasks={[]} id={"3"} /> */}
+          <Modal open={isFormOpen} onKeyDown={handleEscapeKey}>
+            {/* <Paper style={{height:'570px',width:700}}> */}
+            <TaskForm
+              onClose={closeForm}
+              action={action}
+              setAction={setAction}
+            />
+            {/* </Paper> */}
+          </Modal>{" "}
+          {/* Render the form when isFormOpen is true */}
+        </div>
+      </DragDropContext>
+    </>
   );
 }

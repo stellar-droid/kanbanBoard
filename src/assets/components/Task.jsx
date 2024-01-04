@@ -7,10 +7,11 @@ import { Avatar, Image } from "antd";
 import { Button, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 const Container = styled.div`
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px 2px grey;
+  border-radius: 2px;
+  border: 1px solid lightgrey;
+  // box-shadow: 5px 5px 5px 2px grey;
   padding: 8px;
-  color: #000;
+  color: black;
   margin-bottom: 1px;
   min-height: 1px;
   margin-left: 1px;
@@ -21,6 +22,8 @@ const Container = styled.div`
   justify-content: space-between;
   flex-direction: column;
   position: relative;
+  height: 20px;
+  
 `;
 
 const TextContent = styled.div``;
@@ -49,7 +52,7 @@ export default function Task({ task, index, onDelete }) {
           isDragging={snapshot.isDragging}
           style={provided.draggableProps.style}
         >
-          <div style={{ display: "flex", justifyContent: "space-between",alignItems:'start', padding: 2 }}>
+          <div style={{ display: "flex", justifyContent: "space-between",alignItems:'start', padding: 1, height:'2px' }}>
             <span>
               <small>
                 #{task.id}
