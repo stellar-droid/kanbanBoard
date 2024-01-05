@@ -15,7 +15,7 @@ export default function KanbanBoard() {
   const [action, setAction] = useState(true);
 
   const staticData = [
-    // { userId: 1, id: 1, title: "Device 1", rack: "1" },
+    { userId: 1, id: 1, title: "Device 1", rack: "1" },
     // { userId: 2, id: 2, title: "Device 2", rack: "1" },
     // { userId: 3, id: 3, title: "Device 3", rack: "2" },
     // { userId: 4, id: 4, title: "Device 4", rack: "2" },
@@ -235,6 +235,7 @@ export default function KanbanBoard() {
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
+            marginLeft: "220px",
           }}
         >
           <Column

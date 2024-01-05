@@ -5,7 +5,7 @@ const LeftPanel = ({ stockDevices, index, id }) => {
   return (
     <div>
       <h2>Stock Devices in Stock</h2>
-      <Droppable droppableId={id}>
+      <Droppable droppableId={id} isDroppable={false}>
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
