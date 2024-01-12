@@ -6,66 +6,29 @@ import Column from "./Column";
 import TaskForm from "./TaskForm";
 import { Modal, Paper } from "@mui/material";
 import LeftPanel from "./LeftPanel";
-
+import Test from "./test";
 export default function KanbanBoard() {
   const [rack1, setRack1] = useState([""]);
   const [rack2, setRack2] = useState([""]);
   const [rack3, setRack3] = useState([""]);
+  const [rack4, setRack4] = useState([""]);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [action, setAction] = useState(true);
 
   const staticData = [
-    { userId: 1, id: 1, title: "Device 1", rack: "1" },
-    // { userId: 2, id: 2, title: "Device 2", rack: "1" },
-    // { userId: 3, id: 3, title: "Device 3", rack: "2" },
-    // { userId: 4, id: 4, title: "Device 4", rack: "2" },
-    // { userId: 5, id: 5, title: "Device 5", rack: "3" },
-    // { userId: 6, id: 6, title: "Device 6", rack: "3" },
-    // { userId: 7, id: 7, title: "Device 7", rack: "3" },
-    // { userId: 8, id: 8, title: "Device 8", rack: "2" },
-    // { userId: 9, id: 9, title: "Device 9", rack: "1" },
-    // { userId: 10, id: 10, title: "Device 10", rack: "2" },
-    // { userId: 11, id: 11, title: "Device 11", rack: "3" },
-    // { userId: 12, id: 12, title: "Device 12", rack: true },
-    // { userId: 13, id: 13, title: "Device 13", rack: false },
-    // { userId: 14, id: 14, title: "Device 14", rack: true },
-    // { userId: 15, id: 15, title: "Device 15", rack: false },
-    // { userId: 16, id: 16, title: "Device 16", rack: true },
-    // { userId: 17, id: 17, title: "Device 17", rack: false },
-    // { userId: 18, id: 18, title: "Device 18", rack: true },
-    // { userId: 19, id: 19, title: "Device 19", rack: false },
-    // { userId: 20, id: 20, title: "Device 20", rack3: true }
-    // { userId: 21, id: 21, title: "Device 21", rack: false },
-    // { userId: 22, id: 22, title: "Device 22", rack: false },
-    // { userId: 23, id: 23, title: "Device 23", rack: false },
-    // { userId: 24, id: 24, title: "Device 24", rack: true },
-    // { userId: 25, id: 25, title: "Device 25", rack: true },
-    // { userId: 26, id: 26, title: "Device 26", rack: true },
-    // { userId: 27, id: 27, title: "Device 27", rack: true },
-    // { userId: 28, id: 28, title: "Device 28", rack: true },
-    // { userId: 29, id: 29, title: "Device 29", rack: true },
-    // { userId: 30, id: 30, title: "Device 30", rack: true },
-    // { userId: 31, id: 31, title: "Device 31", rack: true },
-    // { userId: 32, id: 32, title: "Device 32", rack: true },
-    // { userId: 33, id: 33, title: "Device 33", rack: true },
-    // { userId: 34, id: 34, title: "Device 34", rack: true },
-    // { userId: 35, id: 35, title: "Device 35", rack: true },
-    // { userId: 36, id: 36, title: "Device 36", rack: true },
-    // { userId: 37, id: 37, title: "Device 37", rack: true },
-    // { userId: 38, id: 38, title: "Device 38", rack: true },
-    // { userId: 39, id: 39, title: "Device 39", rack: true },
-    // { userId: 40, id: 40, title: "Device 40", rack: true },
-    // { userId: 41, id: 41, title: "Device 41", rack: true },
-    // { userId: 42, id: 42, title: "Device 42", rack: true },
-    // { userId: 43, id: 43, title: "Device 43", rack: true },
-    // { userId: 44, id: 44, title: "Device 44", rack: true },
-    // { userId: 45, id: 45, title: "Device 45", rack: true },
-    // { userId: 46, id: 46, title: "Device 46", rack: true },
-    // { userId: 47, id: 47, title: "Device 47", rack: true },
-    // { userId: 48, id: 48, title: "Device 48", rack: true },
-    // { userId: 49, id: 49, title: "Device 49", rack: true },
-    // { userId: 50, id: 50, title: "Device 50", rack: true },
-    // Add more tasks as needed
+    {id: '2', title: "Device 2", rack: "1" },
+    {id: '1', title: "Device 1", rack: "1" },
+    {id: '3', title: "Device 3", rack: "2" },
+    {id: '4', title: "Device 4", rack: "2" },
+    {id: '5', title: "Device 5", rack: "3" },
+    {id: '6', title: "Device 6", rack: "3" },
+    {id: '7', title: "Device 7", rack: "3" },
+    {id: '8', title: "Device 8", rack: "2" },
+    { id: "192.148.11.45", title: "OPM-Server31" , rack: "4"},
+    { id: "192.148.11.89", title: "OPM-Switch6", rack: "4"},
+    { id: "192.148.11.43", title: "OPM-Server29"  , rack: "4"},
+    { id: "172.168.22.16", title: "OPM-Server23"  , rack: "4"},
+    // Add more devices as needed
   ];
 
   // <-------------------USE EFFECT----------------->
@@ -74,10 +37,12 @@ export default function KanbanBoard() {
     const rack1 = staticData.filter((task) => task.rack === "1");
     const rack2 = staticData.filter((task) => task.rack === "2");
     const rack3 = staticData.filter((task) => task.rack === "3");
+    const rack4 = staticData.filter((task) => task.rack === "4");
 
     setRack1(rack1);
     setRack2(rack2);
     setRack3(rack3);
+    setRack4(rack4);
 
     // Add event listener for the Escape key
     document.addEventListener("keydown", handleEscapeKey);
@@ -97,6 +62,9 @@ export default function KanbanBoard() {
   };
   // <-------------------HANDLE ESCAPE KEY ENDS----------------->
 
+
+
+  
   // <-------------------HANDLE DRAG START----------------->
   const handleDragEnd = (result) => {
     const { destination, source, draggableId } = result;
@@ -132,21 +100,39 @@ export default function KanbanBoard() {
     }
 
     // If dragging between racks
-    const task =
-      source.droppableId === "2"
-        ? rack2[source.index]
-        : source.droppableId === "3"
-        ? rack3[source.index]
-        : rack1[source.index];
+    // source.droppableId === "2"
+    //   ? rack2[source.index]
+    //   : source.droppableId === "3"
+    //   ? rack3[source.index]
+    //   : rack1[source.index];
+    const getTask = () =>{ switch(source.droppableId){
+          case "1":
+            return rack1[source.index];
+          case "2":
+            return rack2[source.index];
+          case "3":
+            return rack3[source.index];
+          case "4":
+            return rack4[source.index];
+          default:
+            return rack1[source.index];
+        }
+}
+const task = getTask();
 
+console.log('task',task);
     // Remove the task from the source rack
     const updatedSource =
       source.droppableId === "2"
         ? Array.from(rack2)
         : source.droppableId === "3"
         ? Array.from(rack3)
+        : source.droppableId === "4"
+        ? Array.from(rack4)
         : Array.from(rack1);
     updatedSource.splice(source.index, 1);
+  source.draggableId="4"? setRack4(updatedSource): null;
+    console.log("Updated Source Rack:", updatedSource);
 
     // Update the destination rack with the task at the correct position
     const updatedDestination =
@@ -161,6 +147,8 @@ export default function KanbanBoard() {
       rack2: destination.droppableId === "2",
       rack3: destination.droppableId === "3",
     });
+
+    console.log("Updated Destination Rack:", updatedDestination);
 
     // Check the length of the destination rack after rearranging
     if (updatedDestination.length > 42) {
@@ -259,8 +247,12 @@ export default function KanbanBoard() {
             style={{ zIndex: 2 }}
             onDelete={onDelete}
           />
-
-          <LeftPanel stockDevices={stockDevices} index={stockDevices.id} id={stockDevices.id} />
+          {/* <LeftPanel
+            stockDevices={stockDevices}
+            index={stockDevices.id}
+            id={stockDevices.id}
+          /> */}
+          <Test data={rack4} id={"4"}/>
           {/* <Column title={"Rack 3"} tasks={[]} id={"3"} /> */}
           <Modal open={isFormOpen} onKeyDown={handleEscapeKey}>
             {/* <Paper style={{height:'570px',width:700}}> */}
