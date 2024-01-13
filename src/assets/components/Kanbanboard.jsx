@@ -105,6 +105,8 @@ export default function KanbanBoard() {
     //   : source.droppableId === "3"
     //   ? rack3[source.index]
     //   : rack1[source.index];
+    
+    // if dragging between racks 
     const getTask = () =>{ switch(source.droppableId){
           case "1":
             return rack1[source.index];
@@ -131,7 +133,12 @@ console.log('task',task);
         ? Array.from(rack4)
         : Array.from(rack1);
     updatedSource.splice(source.index, 1);
-  source.draggableId="4"? setRack4(updatedSource): null;
+    // if (source.droppableId === "4") {
+    //   setRack4(updatedSource);
+    // }
+    // else{
+
+    // }
     console.log("Updated Source Rack:", updatedSource);
 
     // Update the destination rack with the task at the correct position
@@ -140,6 +147,8 @@ console.log('task',task);
         ? Array.from(rack2)
         : destination.droppableId === "3"
         ? Array.from(rack3)
+        : destination.droppableId === "4"
+        ? Array.from(rack4)
         : Array.from(rack1);
     updatedDestination.splice(destination.index, 0, {
       ...task,
@@ -161,9 +170,17 @@ console.log('task',task);
       setRack1(updatedSource);
     } else if (source.droppableId === "2") {
       setRack2(updatedSource);
-    } else if (source.droppableId === "3") {
+    } 
+    else if (source.droppableId === "3") {
       setRack3(updatedSource);
     }
+    else if (source.droppableId === "4") {
+      setRack4(updatedSource);
+    }
+    else{
+      return;
+    }
+
 
     if (destination.droppableId === "1") {
       setRack1(updatedDestination);

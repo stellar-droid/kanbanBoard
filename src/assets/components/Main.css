@@ -8,3 +8,16 @@
 .column::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
 }
+
+/* <======================Stock Devices Page======================> */
+.stocklist{
+  margin-top: 103px;
+  position: fixed ;
+   top: 0;
+    left: 0;
+    background-color: #D3D3D3;
+}
+
+.column{
+  background-image:url('../images/rackview.jpg')/;
+}

@@ -1,13 +1,13 @@
 import React from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
-
+import './Main.css';
 const RackDeviceList = ({data,id}) => {
   
 
   return (
     <div
-      className="opmAddEditDeviceList"
-      style={{ position: "fixed", top: 0, left: 0 }}
+      className="stocklist"
+      
     >
       <div className="opmAddEditDeviceListhdr">
         Available Devices (<span id="remaingDevList_Rck">{data.length}</span>)

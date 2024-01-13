@@ -3,7 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import Task from "./Task";
-import "./scroll.css";
+import "./Main.css";
 import { Droppable } from "react-beautiful-dnd";
 import { Button } from "@mui/material";
 
@@ -41,7 +41,7 @@ export default function Column({ title, tasks, id, onDelete }) {
       <Container className="column">
         <Title
           style={{
-            backgroundColor: "lightblue",
+            backgroundColor: "#9C27B0",
             position: "stick",
           }}
         >
