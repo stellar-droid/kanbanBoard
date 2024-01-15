@@ -62,8 +62,8 @@ const RackDeviceList = ({data,id}) => {
                 <tbody>
                   {data.map((item,index) => (
                     <Draggable
-                      key={index}
-                      draggableId={`${item.id}`}
+                      key={item.id}
+                      draggableId={item.id}
                       index={index}
                     >
                       {(provided, snapshot) => (

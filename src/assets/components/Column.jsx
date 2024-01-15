@@ -41,7 +41,7 @@ export default function Column({ title, tasks, id, onDelete }) {
       <Container className="column">
         <Title
           style={{
-            backgroundColor: "#9C27B0",
+            backgroundColor: "#0073e6",
             position: "stick",
           }}
         >

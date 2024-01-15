@@ -222,13 +222,27 @@ console.log('task',task);
     setRack1(updatedRack1);
     setRack3(updatedRack3);
     console.log(" Deleted Device : ", taskId);
+
+// Move the deleted device back to rack 4
+const deletedDevice = staticData.find((device) => device.id === taskId);
+setRack4([...rack4, deletedDevice]);
+
+console.log("Deleted Device: ", taskId);
+
   };
   // <-------------------DELETE DEVICE ENDS----------------->
-  const [stockDevices, setStockDevices] = useState([
-    { id: "device1", name: "Device 1" },
-    { id: "device2", name: "Device 2" },
-    // Add more devices as needed
-  ]);
+
+
+
+
+  // const [stockDevices, setStockDevices] = useState([
+  //   { id: "device1", name: "Device 1" },
+  //   { id: "device2", name: "Device 2" },
+  //   // Add more devices as needed
+  // ]);
+
+
+
   return (
     <>
       <DragDropContext onDragEnd={handleDragEnd}>
